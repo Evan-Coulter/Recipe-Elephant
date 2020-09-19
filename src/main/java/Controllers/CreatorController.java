@@ -1,8 +1,10 @@
 package Controllers;
 
-import javafx.event.ActionEvent;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
@@ -13,49 +15,47 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicLong;
 
-public class CreatorController implements Initializable {
-
-    private AtomicLong ingredientCounter;
-    private AtomicLong stepCounter;
+public class CreatorController {
 
     @FXML
     private VBox stepVBox;
     @FXML
     private VBox ingredientVBox;
     @FXML
-    private final TextArea ingredientTextArea = new TextArea();;
+    private TextArea ingredientTextArea;
     @FXML
-    private final TextArea stepTextArea = new TextArea();;
+    private TextArea stepTextArea;
 
     public void addStep() throws IOException {
-        HBox newStep = new HBox();
-
-        Label number = new Label( Long.toString(stepCounter.incrementAndGet()) + ") " );
-        Label step = new Label(stepTextArea.getText());
-        newStep.getChildren().addAll(number, step);
-
-        stepVBox.getChildren().addAll(newStep);
+        addItem(stepVBox, stepTextArea);
     }
 
     public void addIngredient() throws IOException {
-        HBox newIngredient = new HBox();
-
-        Label number = new Label( Long.toString(ingredientCounter.incrementAndGet()) + ") " );
-        Label ingredient = new Label(ingredientTextArea.getText());
-        newIngredient.getChildren().addAll(number, ingredient);
-
-        ingredientVBox.getChildren().add(newIngredient);
+        addItem(ingredientVBox, ingredientTextArea);
     }
 
-
     /**
-     * Could add edit recipe functionality here that loads a recipe.
-     * @param location
-     * @param resources
+     * Private method that accepts a vbox, and text area and updates that vbox with
+     * whatever text was in the text area. USED TO UPDATE TWO INNER VBOXS IN CREATE RECIPE.
+     * @param vbox the input vbox.
+     * @param textArea the input textArea
+     * @throws IOException
      */
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        ingredientCounter = new AtomicLong();
-        stepCounter = new AtomicLong();
+    private void addItem(VBox vbox, TextArea textArea) throws IOException {
+        HBox newStep = new HBox();
+
+        //Set up Delete Button
+        Button deleteButton = new Button("-");
+        deleteButton.setStyle("-fx-text-fill: red");
+        deleteButton.setOnAction(event -> {
+            vbox.getChildren().remove(newStep);
+        });
+        //Set user-visible list index and text area content
+        Label number = new Label("1) ");
+        Label step = new Label( textArea.getText() );
+
+        //Add all new content to HBox then add HBox to parent VBox
+        newStep.getChildren().addAll(deleteButton,number, step);
+        vbox.getChildren().addAll(newStep);
     }
 }
