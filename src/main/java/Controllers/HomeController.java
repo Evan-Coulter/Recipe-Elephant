@@ -17,7 +17,7 @@ public class HomeController {
         try{
             Parent parent = FXMLLoader.load(getClass().getResource("/Templates/view_recipe.fxml"));
             primaryStage.setScene(new Scene(parent, 500, 350));
-            primaryStage.show();
+            primaryStage.showAndWait();
         }
         catch(IOException exception) {
             System.err.println("An error occurred creating a recipe");
@@ -32,7 +32,7 @@ public class HomeController {
         try{
             Parent parent = FXMLLoader.load(getClass().getResource("/Templates/create_recipe.fxml"));
             primaryStage.setScene(new Scene(parent, 700, 500));
-            primaryStage.show();
+            primaryStage.showAndWait();
         }
         catch(IOException exception) {
             System.err.println("An error occurred loading that recipe");
