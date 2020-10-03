@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Recipe {
     private final List<String> steps;
+    private final List<String> ingredients;
     private String name;
 
     public String getName() {
@@ -17,17 +18,31 @@ public class Recipe {
 
     public Recipe(String name) {
         this.name = name;
-        this.steps = new ArrayList<>();
+        steps = new ArrayList<>();
+        ingredients = new ArrayList<>();
     }
     public Recipe(){
-       this.steps = new ArrayList<>();
+       steps = new ArrayList<>();
+       ingredients = new ArrayList<>();
     }
 
     public void addStep(String step) {
         steps.add(step);
     }
+    public void addIngredient(String step) {
+        ingredients.add(step);
+    }
 
-    public int getSize(){
-        return steps.size();
+    public void removeStep(String step) {
+        steps.remove(step);
+    }
+
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "steps=" + steps +
+                ", ingredients=" + ingredients +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
