@@ -1,0 +1,14 @@
+{"recipes":
+[
+  {
+  "steps": ["whip egg whites with sugar into firm peaks","bake at 425 degrees for 30 minutes","serve!"],
+  "ingredients":["1 tbsp of sugar","2 egg whites"],
+  "name":"Awesome Meringe!"
+  },
+  {
+  "steps":["combine flour and water","knead dough for 5 min.","bake at 400 degrees for 50 min."],
+  "ingredients":["- 1 cup of flour","- 2 tbsp of water"],
+  "name":"bread"
+  }
+]
+}

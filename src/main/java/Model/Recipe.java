@@ -16,14 +16,10 @@ public class Recipe {
         this.name = name;
     }
 
-    public Recipe(String name) {
-        this.name = name;
+    public Recipe(){
+        name = "";
         steps = new ArrayList<>();
         ingredients = new ArrayList<>();
-    }
-    public Recipe(){
-       steps = new ArrayList<>();
-       ingredients = new ArrayList<>();
     }
 
     public void addStep(String step) {
@@ -36,6 +32,7 @@ public class Recipe {
     public void removeStep(String step) {
         steps.remove(step);
     }
+    public void removeIngredient(String ingredient) {ingredients.remove(ingredient);}
 
     @Override
     public String toString() {

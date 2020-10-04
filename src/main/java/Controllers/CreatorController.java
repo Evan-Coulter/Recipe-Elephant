@@ -1,6 +1,7 @@
 package Controllers;
 
 import Model.Recipe;
+import Model.RecipeManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -13,8 +14,9 @@ import javafx.scene.layout.VBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CreatorController implements Initializable {
-    private Recipe recipe;
+public class CreatorController implements Initializable{
+    public Recipe recipe;
+    private static final Boolean STEP = true;
     @FXML
     private VBox stepVBox;
     @FXML
@@ -23,17 +25,30 @@ public class CreatorController implements Initializable {
     private TextArea ingredientTextArea;
     @FXML
     private TextArea stepTextArea;
-    private static final Boolean STEP = true;
 
+    /**
+     * Method used to encapsulate setting name in SetNameController by passing a
+     * reference to our recipe and letting it handle that and then closing the stage.
+     */
+    public void setUpClose(){
+        recipe.setName(SetNameController.setName());
+        save();
+    }
+
+    /**
+     * Method that stores our new recipe in recipe manager singleton.
+     */
+    private void save() {
+        RecipeManager manager = RecipeManager.getInstance();
+        manager.addRecipe(recipe);
+    }
 
     public void addStep() {
         addItem(stepVBox, stepTextArea, STEP);
     }
-
     public void addIngredient(){
         addItem(ingredientVBox, ingredientTextArea, !STEP);
     }
-
     /**
      * Private method that accepts a vbox, and text area and updates that vbox with
      * whatever text was in the text area. USED TO UPDATE TWO INNER VBOXS IN CREATE RECIPE.
@@ -50,27 +65,30 @@ public class CreatorController implements Initializable {
         Button deleteButton = new Button("-");
         deleteButton.setStyle("-fx-text-fill: red");
 
-        //Set user-visible list index and text area content
-        Label number = new Label();
+        //Get text area content
         Label step = new Label( textArea.getText() );
 
         //Set up delete button functionality, needs to be after step declaration
         deleteButton.setOnAction(event -> {
             vbox.getChildren().remove(newStep);
-            recipe.removeStep(step.getText());
+            if(isStep) {
+                recipe.removeStep(step.getText());
+            }else{
+                recipe.removeIngredient(step.getText());
+            }
         });
 
         //Add all new content to HBox then add HBox to parent VBox
-        newStep.getChildren().addAll(deleteButton,number, step);
+        newStep.getChildren().addAll(deleteButton, step);
         vbox.getChildren().addAll(newStep);
 
         //add step or ingredient to recipe
+        String text = textArea.getText();
         if(isStep){
-            recipe.addStep(textArea.getText());
+            recipe.addStep(text);
         }else{
-            recipe.addIngredient(textArea.getText());
+            recipe.addIngredient(text);
         }
-
         System.out.println(recipe);
     }
 
