@@ -1,5 +1,6 @@
 package Controllers;
 
+import Controllers.UtilityControllers.SetNameController;
 import Model.Recipe;
 import Model.RecipeManager;
 import javafx.fxml.FXML;
@@ -7,7 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -15,7 +15,7 @@ import javafx.scene.layout.VBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CreatorController implements Initializable{
+public class CreatorController implements Initializable, Savable {
     public Recipe recipe;
     private static final Boolean STEP = true;
     @FXML
@@ -26,15 +26,12 @@ public class CreatorController implements Initializable{
     private TextArea ingredientTextArea;
     @FXML
     private TextArea stepTextArea;
-    @FXML
-    private MenuItem menuSave;
-    @FXML
-    private MenuItem menuSetName;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         recipe = new Recipe();
     }
+
 
 
     public void setUpClose(){
@@ -58,7 +55,7 @@ public class CreatorController implements Initializable{
     }
 
     /**
-     * Method that stores our new recipe in recipe manager singleton.
+     * Saves the recipe.
      */
     private void save() {
         RecipeManager manager = RecipeManager.getInstance();
@@ -73,6 +70,7 @@ public class CreatorController implements Initializable{
     public void addIngredient(){
         addItem(ingredientVBox, ingredientTextArea, !STEP);
     }
+
     /**
      * Private method that accepts a vbox, and text area and updates that vbox with
      * whatever text was in the text area. USED TO UPDATE TWO INNER VBOXS IN CREATE RECIPE.

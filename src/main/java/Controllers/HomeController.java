@@ -7,37 +7,46 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * The controller for the home page.
+ */
 public class HomeController {
+    private static final int WIDTH = 700;
+    private static final int HEIGHT = 500;
+
+
     public void viewButtonClicked() {
-        Stage primaryStage = new Stage();
-        primaryStage.setTitle("View Recipe");
-        try{
-            Parent parent = FXMLLoader.load(getClass().getResource("/Templates/view_recipe.fxml"));
-            primaryStage.setScene(new Scene(parent, 500, 350));
-            primaryStage.showAndWait();
-        }
-        catch(IOException exception) {
-            System.err.println("An error occurred loading that recipe");
-            exception.printStackTrace();
-        }
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Templates/view_recipe.fxml"));
+        String name = "View Recipe";
+        extractHomePageButtons(fxmlLoader, name);
     }
 
     public void createButtonClicked(){
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Templates/create_recipe.fxml"));
+        String name = "Create New Recipe";
+        extractHomePageButtons(fxmlLoader, name);
+    }
+
+    private void extractHomePageButtons(FXMLLoader fxmlLoader, String title){
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Templates/create_recipe.fxml"));
-            Parent root = fxmlLoader.load(); //This must be called before controller access
-            CreatorController controller = (CreatorController)fxmlLoader.getController();
+            //Layout
+            Parent root = fxmlLoader.load();
+
+            //Controller Class
+            Savable controller = fxmlLoader.getController();
+
+            //Set Up Stage
             Stage window = new Stage();
-            window.setTitle("Create Recipe");
-            window.setScene(new Scene(root, 700, 500));
+            window.setTitle(title);
+            window.setScene(new Scene(root, WIDTH, HEIGHT));
             window.setOnCloseRequest(event->{
+                /*setUpClose() must be implemented in each controller class, it is
+                * implemented with my own interface Savable.*/
                 controller.setUpClose();
                 window.close();
             });
             window.show();
-        }
-        catch(IOException exception){
-            System.err.println("An error occurred opening the create button window.");
+        }catch(IOException exception){
             exception.printStackTrace();
         }
     }

@@ -42,6 +42,10 @@ public class RecipeManager {
         return ret;
     }
 
+    public Recipe get(int index){
+        return recipes.get(index);
+    }
+
     private void serialize() {
         try (Writer writer = new FileWriter(FILE_LOCATION)) {
             Gson gson = new Gson();
