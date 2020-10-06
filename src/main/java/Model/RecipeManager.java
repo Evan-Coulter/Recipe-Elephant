@@ -31,6 +31,17 @@ public class RecipeManager {
         serialize();
     }
 
+    public boolean contains(Recipe recipe){
+        boolean ret = false;
+        for (Recipe r:recipes) {
+            if (r.getName().equals(recipe.getName())) {
+                ret = true;
+                break;
+            }
+        }
+        return ret;
+    }
+
     private void serialize() {
         try (Writer writer = new FileWriter(FILE_LOCATION)) {
             Gson gson = new Gson();

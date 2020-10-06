@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -25,13 +26,34 @@ public class CreatorController implements Initializable{
     private TextArea ingredientTextArea;
     @FXML
     private TextArea stepTextArea;
+    @FXML
+    private MenuItem menuSave;
+    @FXML
+    private MenuItem menuSetName;
 
-    /**
-     * Method used to encapsulate setting name in SetNameController by passing a
-     * reference to our recipe and letting it handle that and then closing the stage.
-     */
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        recipe = new Recipe();
+    }
+
+
     public void setUpClose(){
-        recipe.setName(SetNameController.setName());
+        extractSetNameFunctions();
+    }
+    @FXML
+    public void menuSaveClicked(){
+        extractSetNameFunctions();
+    }
+    @FXML
+    public void menuSetNameClicked(){
+        recipe.setName("");
+        extractSetNameFunctions();
+    }
+
+    private void extractSetNameFunctions(){
+        if(recipe.getName().matches("")) {
+            recipe.setName(SetNameController.setName());
+        }
         save();
     }
 
@@ -40,7 +62,9 @@ public class CreatorController implements Initializable{
      */
     private void save() {
         RecipeManager manager = RecipeManager.getInstance();
-        manager.addRecipe(recipe);
+        if(!manager.contains(recipe)) {
+            manager.addRecipe(recipe);
+        }
     }
 
     public void addStep() {
@@ -89,11 +113,5 @@ public class CreatorController implements Initializable{
         }else{
             recipe.addIngredient(text);
         }
-        System.out.println(recipe);
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        recipe = new Recipe();
     }
 }

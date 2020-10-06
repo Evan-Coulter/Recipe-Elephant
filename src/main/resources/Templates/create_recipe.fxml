@@ -19,19 +19,14 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem fx:id="menuSave" mnemonicParsing="false" onAction="#menuSaveClicked" text="Save" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+               <items>
+                  <MenuItem fx:id="menuSetName" mnemonicParsing="false" onAction="#menuSetNameClicked" text="Set Recipe Name" />
+               </items>
+            </Menu>
         </menus>
       </MenuBar>
    </top>
@@ -43,7 +38,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="348.0" prefWidth="209.0" VBox.vgrow="ALWAYS">
+            <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="348.0" prefWidth="209.0" VBox.vgrow="ALWAYS">
                <content>
                   <VBox fx:id="ingredientVBox" alignment="TOP_CENTER" spacing="15.0">
                      <padding>
@@ -65,7 +60,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+            <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
                <content>
                   <VBox fx:id="stepVBox" alignment="TOP_CENTER" spacing="20.0">
                      <padding>
