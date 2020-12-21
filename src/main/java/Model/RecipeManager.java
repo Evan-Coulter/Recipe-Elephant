@@ -43,6 +43,9 @@ public class RecipeManager {
     }
 
     public Recipe get(int index){
+        if(recipes.size() == 0){
+            return null;
+        }
         return recipes.get(index);
     }
 

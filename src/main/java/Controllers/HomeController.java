@@ -1,6 +1,7 @@
 package Controllers;
 
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.LoadException;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -28,6 +29,9 @@ public class HomeController {
     }
 
     private void extractHomePageButtons(FXMLLoader fxmlLoader, String title){
+        if(fxmlLoader == null){
+            throw new IllegalArgumentException();
+        }
         try {
             //Layout
             Parent root = fxmlLoader.load();
@@ -46,7 +50,7 @@ public class HomeController {
                 window.close();
             });
             window.show();
-        }catch(IOException exception){
+        }catch(Exception exception){
             exception.printStackTrace();
         }
     }
