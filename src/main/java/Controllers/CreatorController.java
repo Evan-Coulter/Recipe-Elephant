@@ -15,7 +15,7 @@ import javafx.scene.layout.VBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CreatorController implements Initializable, Savable {
+public class CreatorController implements Initializable, SavableController {
     public Recipe recipe;
     private static final Boolean STEP = true;
     @FXML
@@ -49,7 +49,9 @@ public class CreatorController implements Initializable, Savable {
 
     private void extractSetNameFunctions(){
         if(recipe.getName().matches("")) {
-            recipe.setName(SetNameController.setName());
+            SetNameController setNameController = new SetNameController();
+            setNameController.drawWindow("Set Name", 400, 400);
+            setNameController.setRecipeName(recipe);
         }
         save();
     }

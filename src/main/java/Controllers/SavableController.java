@@ -1,5 +1,5 @@
 package Controllers;
 
-public interface Savable {
+public interface SavableController {
     void setUpClose();
 }

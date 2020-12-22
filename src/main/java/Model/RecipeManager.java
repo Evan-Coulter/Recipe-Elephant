@@ -4,13 +4,14 @@ import com.google.gson.Gson;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
  * Singleton class that stores all our saved recipes. We serialize and
  * deserialize this class to save our recipes to files.
  */
-public class RecipeManager {
+public class RecipeManager implements Iterable<Recipe> {
     private static final String FILE_LOCATION = "Recipes.json";
     private static RecipeManager instance = null;
 
@@ -27,6 +28,7 @@ public class RecipeManager {
     }
 
     public void addRecipe(Recipe recipe){
+        if(recipe.getName().equals("")) return;
         recipes.add(recipe);
         serialize();
     }
@@ -43,7 +45,7 @@ public class RecipeManager {
     }
 
     public Recipe get(int index){
-        if(recipes.size() == 0){
+        if((index < 0) || (index > recipes.size()-1)){
             return null;
         }
         return recipes.get(index);
@@ -70,7 +72,8 @@ public class RecipeManager {
         }
     }
 
-    public Recipe getRecipe(int index) {
-        return recipes.get(index);
+    @Override
+    public Iterator<Recipe> iterator() {
+        return recipes.iterator();
     }
 }
