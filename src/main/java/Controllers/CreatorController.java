@@ -32,18 +32,11 @@ public class CreatorController implements Initializable, SavableController {
         recipe = new Recipe();
     }
 
-
-
     public void setUpClose(){
         extractSetNameFunctions();
     }
     @FXML
     public void menuSaveClicked(){
-        extractSetNameFunctions();
-    }
-    @FXML
-    public void menuSetNameClicked(){
-        recipe.setName("");
         extractSetNameFunctions();
     }
 
@@ -63,6 +56,8 @@ public class CreatorController implements Initializable, SavableController {
         RecipeManager manager = RecipeManager.getInstance();
         if(!manager.contains(recipe)) {
             manager.addRecipe(recipe);
+        }else{
+            manager.update(recipe);
         }
     }
 

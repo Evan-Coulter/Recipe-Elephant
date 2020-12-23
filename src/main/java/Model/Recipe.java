@@ -34,6 +34,14 @@ public class Recipe {
     }
     public void removeIngredient(String ingredient) {ingredients.remove(ingredient);}
 
+    public List<String> getSteps() {
+        return steps;
+    }
+
+    public List<String> getIngredients() {
+        return ingredients;
+    }
+
     @Override
     public String toString() {
         return "Recipe{" +

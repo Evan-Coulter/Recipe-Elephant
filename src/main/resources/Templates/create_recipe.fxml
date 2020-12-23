@@ -22,11 +22,6 @@
               <MenuItem fx:id="menuSave" mnemonicParsing="false" onAction="#menuSaveClicked" text="Save" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="Edit">
-               <items>
-                  <MenuItem fx:id="menuSetName" mnemonicParsing="false" onAction="#menuSetNameClicked" text="Set Recipe Name" />
-               </items>
-            </Menu>
         </menus>
       </MenuBar>
    </top>

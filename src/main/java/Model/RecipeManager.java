@@ -44,13 +44,6 @@ public class RecipeManager implements Iterable<Recipe> {
         return ret;
     }
 
-    public Recipe get(int index){
-        if((index < 0) || (index > recipes.size()-1)){
-            return null;
-        }
-        return recipes.get(index);
-    }
-
     private void serialize() {
         try (Writer writer = new FileWriter(FILE_LOCATION)) {
             Gson gson = new Gson();
@@ -67,13 +60,23 @@ public class RecipeManager implements Iterable<Recipe> {
             Gson gson = new Gson();
             instance = gson.fromJson(reader, RecipeManager.class);
         }catch(IOException exception){
-            System.err.println("An error occurred loading recipes from file.");
-            exception.printStackTrace();
+            System.err.println("Recipes.json doesn't exist yet.");
+            System.err.println("This is ok if this no recipes are saved yet.");
         }
     }
 
     @Override
     public Iterator<Recipe> iterator() {
         return recipes.iterator();
+    }
+
+    public void update(Recipe recipe) {
+        int i=0;
+        while( (i<recipes.size()) && (!recipes.get(i).getName().equals(recipe.getName())) ){
+            i++;
+        }
+        recipes.remove(i);
+        recipes.add(recipe);
+        serialize();
     }
 }

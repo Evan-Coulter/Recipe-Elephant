@@ -8,7 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class SetNameController extends PopUpBox {
-    private static String name = "";
+    private String name = "";
 
     public void setRecipeName(Recipe recipe){
         recipe.setName(name);
