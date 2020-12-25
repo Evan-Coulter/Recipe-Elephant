@@ -79,4 +79,8 @@ public class RecipeManager implements Iterable<Recipe> {
         recipes.add(recipe);
         serialize();
     }
+
+    public int size() {
+        return recipes.size();
+    }
 }

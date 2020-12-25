@@ -26,11 +26,20 @@ public class HomeController implements Initializable {
 
     public void createButtonClicked(){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Templates/create_recipe.fxml"));
-        String name = "Create New Recipe";
+        String name = "Create Recipe";
         extractHomePageButtons(fxmlLoader, name);
     }
 
-    private void extractHomePageButtons(FXMLLoader fxmlLoader, String title) throws IllegalArgumentException{
+    public void editButtonClicked(){
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Templates/create_recipe.fxml"));
+        String name = "Edit Recipe";
+        SavableController controller = extractHomePageButtons(fxmlLoader, name);
+        if(controller!=null){
+            ((CreatorController)controller).loadPreviousRecipe();
+        }
+    }
+
+    private SavableController extractHomePageButtons(FXMLLoader fxmlLoader, String title) throws IllegalArgumentException{
         if(fxmlLoader == null){
             throw new IllegalArgumentException();
         }
@@ -52,8 +61,10 @@ public class HomeController implements Initializable {
                 window.close();
             });
             window.show();
+            return controller;
         }catch(Exception exception){
             exception.printStackTrace();
+            return null;
         }
     }
 

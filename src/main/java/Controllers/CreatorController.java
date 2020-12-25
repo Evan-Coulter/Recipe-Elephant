@@ -1,5 +1,6 @@
 package Controllers;
 
+import Controllers.UtilityControllers.GetRecipeController;
 import Controllers.UtilityControllers.SetNameController;
 import Model.Recipe;
 import Model.RecipeManager;
@@ -75,38 +76,56 @@ public class CreatorController implements Initializable, SavableController {
      * @param textArea the input textArea
      */
     private void addItem(VBox vbox, TextArea textArea, boolean isStep){
-        //Set up HBox
-        HBox newStep = new HBox();
-        newStep.setAlignment(Pos.CENTER);
-        newStep.setSpacing(15);
-
-        //Set up Delete Button
-        Button deleteButton = new Button("-");
-        deleteButton.setStyle("-fx-text-fill: red");
-
-        //Get text area content
-        Label step = new Label( textArea.getText() );
-
-        //Set up delete button functionality, needs to be after step declaration
-        deleteButton.setOnAction(event -> {
-            vbox.getChildren().remove(newStep);
-            if(isStep) {
-                recipe.removeStep(step.getText());
-            }else{
-                recipe.removeIngredient(step.getText());
-            }
-        });
-
-        //Add all new content to HBox then add HBox to parent VBox
-        newStep.getChildren().addAll(deleteButton, step);
+        //Set up Row
+        HBox newStep = getNewTextRow(vbox, textArea.getText(), isStep);
+        //Add Row
         vbox.getChildren().addAll(newStep);
-
         //add step or ingredient to recipe
         String text = textArea.getText();
         if(isStep){
             recipe.addStep(text);
         }else{
             recipe.addIngredient(text);
+        }
+    }
+
+    private HBox getNewTextRow(VBox parent, String text, boolean isStep){
+        HBox row = new HBox();
+        row.setAlignment(Pos.CENTER);
+        row.setSpacing(18);
+        //Set up row text
+        Label label = new Label(text);
+        //Get delete button
+        Button button = getNewDeleteButton(parent, row, label, isStep);
+        //add components
+        row.getChildren().addAll(button, label);
+        return row;
+    }
+
+    private Button getNewDeleteButton(VBox parent, HBox currentRow, Label rowText, boolean isStep){
+        Button deleteButton = new Button("-");
+        deleteButton.setOnAction(event->{
+            parent.getChildren().remove(currentRow);
+            if(isStep){
+                recipe.removeStep(rowText.getText());
+            }else{
+                recipe.removeIngredient(rowText.getText());
+            }
+        });
+        return deleteButton;
+    }
+
+    public void loadPreviousRecipe() {
+        GetRecipeController getter = new GetRecipeController();
+        getter.drawWindow("Choose a Recipe to edit", 300, 100*(RecipeManager.getInstance().size()));
+        recipe = getter.getRecipe();
+        for(String ingredient:recipe.getIngredients()){
+            HBox row = getNewTextRow(ingredientVBox, ingredient, false);
+            ingredientVBox.getChildren().add(row);
+        }
+        for(String step:recipe.getSteps()){
+            HBox row = getNewTextRow(stepVBox, step, true);
+            stepVBox.getChildren().add(row);
         }
     }
 }
