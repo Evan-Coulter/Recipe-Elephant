@@ -21,7 +21,7 @@
             <Insets top="70.0" />
          </padding>
       </HBox>
-      <VBox alignment="CENTER" prefHeight="303.0" prefWidth="600.0" spacing="40.0">
+      <VBox alignment="CENTER" prefHeight="303.0" prefWidth="600.0" spacing="24.0">
          <children>
             <Button mnemonicParsing="false" onAction="#viewButtonClicked" text="View A Recipe">
                <font>
@@ -32,6 +32,11 @@
                   <Font size="18.0" />
                </font></Button>
             <Button mnemonicParsing="false" onAction="#editButtonClicked" text="Edit A Recipe">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#deleteButtonClicked" text="Delete A Recipe">
                <font>
                   <Font size="18.0" />
                </font>

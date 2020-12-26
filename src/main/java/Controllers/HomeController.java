@@ -1,5 +1,7 @@
 package Controllers;
 
+import Controllers.UtilityControllers.GetRecipeController;
+import Model.Recipe;
 import Model.RecipeManager;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,29 +19,38 @@ public class HomeController implements Initializable {
     private static final int WIDTH = 700;
     private static final int HEIGHT = 500;
 
-
     public void viewButtonClicked() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Templates/view_recipe.fxml"));
         String name = "View Recipe";
-        extractHomePageButtons(fxmlLoader, name);
+        setUpAndStartController(fxmlLoader, name);
     }
 
     public void createButtonClicked(){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Templates/create_recipe.fxml"));
         String name = "Create Recipe";
-        extractHomePageButtons(fxmlLoader, name);
+        setUpAndStartController(fxmlLoader, name);
     }
 
     public void editButtonClicked(){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Templates/create_recipe.fxml"));
         String name = "Edit Recipe";
-        SavableController controller = extractHomePageButtons(fxmlLoader, name);
+        SavableController controller = setUpAndStartController(fxmlLoader, name);
         if(controller!=null){
             ((CreatorController)controller).loadPreviousRecipe();
         }
     }
 
-    private SavableController extractHomePageButtons(FXMLLoader fxmlLoader, String title) throws IllegalArgumentException{
+    public void deleteButtonClicked(){
+        GetRecipeController getter = new GetRecipeController();
+        getter.drawWindow("Choose a recipe to delete", 300, 100*RecipeManager.getInstance().size());
+        Recipe recipe = getter.getRecipe();
+        if(recipe!=null){
+            RecipeManager.getInstance().remove(recipe);
+            RecipeManager.getInstance().serialize();
+        }
+    }
+
+    private SavableController setUpAndStartController(FXMLLoader fxmlLoader, String title) throws IllegalArgumentException{
         if(fxmlLoader == null){
             throw new IllegalArgumentException();
         }

@@ -42,6 +42,7 @@ public class CreatorController implements Initializable, SavableController {
     }
 
     private void extractSetNameFunctions(){
+        if(recipe==null) return;
         if(recipe.getName().matches("")) {
             SetNameController setNameController = new SetNameController();
             setNameController.drawWindow("Set Name", 400, 400);
@@ -119,6 +120,7 @@ public class CreatorController implements Initializable, SavableController {
         GetRecipeController getter = new GetRecipeController();
         getter.drawWindow("Choose a Recipe to edit", 300, 100*(RecipeManager.getInstance().size()));
         recipe = getter.getRecipe();
+        if(recipe == null) return;
         for(String ingredient:recipe.getIngredients()){
             HBox row = getNewTextRow(ingredientVBox, ingredient, false);
             ingredientVBox.getChildren().add(row);

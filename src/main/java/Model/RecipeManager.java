@@ -35,16 +35,18 @@ public class RecipeManager implements Iterable<Recipe> {
 
     public boolean contains(Recipe recipe){
         boolean ret = false;
-        for (Recipe r:recipes) {
-            if (r.getName().equals(recipe.getName())) {
-                ret = true;
-                break;
+        if(recipe!=null) {
+            for (Recipe r : recipes) {
+                if (r.getName().equals(recipe.getName())) {
+                    ret = true;
+                    break;
+                }
             }
         }
         return ret;
     }
 
-    private void serialize() {
+    public void serialize() {
         try (Writer writer = new FileWriter(FILE_LOCATION)) {
             Gson gson = new Gson();
             gson.toJson(this, writer);
@@ -71,6 +73,7 @@ public class RecipeManager implements Iterable<Recipe> {
     }
 
     public void update(Recipe recipe) {
+        if(recipe == null) return;
         int i=0;
         while( (i<recipes.size()) && (!recipes.get(i).getName().equals(recipe.getName())) ){
             i++;
@@ -82,5 +85,9 @@ public class RecipeManager implements Iterable<Recipe> {
 
     public int size() {
         return recipes.size();
+    }
+
+    public void remove(Recipe recipe){
+        recipes.remove(recipe);
     }
 }
