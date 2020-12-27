@@ -50,6 +50,14 @@ public class HomeController implements Initializable {
         }
     }
 
+    public void helpButtonClicked() throws Exception{
+        Stage stage = new Stage();
+        Parent parent = FXMLLoader.load(getClass().getResource("/Templates/help.fxml"));
+        stage.setTitle("Help");
+        stage.setScene(new Scene(parent, 650, 433));
+        stage.show();
+    }
+
     private SavableController setUpAndStartController(FXMLLoader fxmlLoader, String title) throws IllegalArgumentException{
         if(fxmlLoader == null){
             throw new IllegalArgumentException();
