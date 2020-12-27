@@ -1,0 +1,14 @@
+#toggle-button{
+    -fx-background-color: transparent;
+    -fx-border-color: black;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+
+    -fx-margin: 0px;
+    -fx-padding: 0px;
+    -fx-min-height: 12px;
+    -fx-max-height: 12px;
+    -fx-min-width: 12px;
+    -fx-max-height: 12px;
+}
