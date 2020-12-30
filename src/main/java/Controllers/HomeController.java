@@ -16,8 +16,8 @@ import java.util.ResourceBundle;
  * The controller for the home page.
  */
 public class HomeController implements Initializable {
-    private static final int WIDTH = 700;
-    private static final int HEIGHT = 500;
+    public static final int WIDTH = 600;
+    public static final int HEIGHT = 400;
 
     public void viewButtonClicked() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Templates/view_recipe.fxml"));

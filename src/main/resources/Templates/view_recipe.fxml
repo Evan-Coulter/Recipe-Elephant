@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -18,33 +19,50 @@
       </Label>
       <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
          <children>
-            <VBox fx:id="ingredients" prefHeight="200.0" prefWidth="200.0" spacing="32.0">
-               <children>
-                  <Label text="Ingredients">
-                     <VBox.margin>
-                        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="Tsukushi A Round Gothic Regular" size="18.0" />
-                     </font>
-                  </Label>
-               </children>
+            <ScrollPane hbarPolicy="NEVER">
                <HBox.margin>
-                  <Insets />
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </HBox.margin>
-            </VBox>
-            <VBox fx:id="steps" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" spacing="32.0">
-               <children>
-                  <Label text="Steps">
-                     <VBox.margin>
-                        <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="Tsukushi A Round Gothic Regular" size="18.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
+               <content>
+                  <VBox fx:id="ingredients" prefWidth="200.0" spacing="32.0">
+                     <children>
+                        <Label text="Ingredients">
+                           <VBox.margin>
+                              <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Tsukushi A Round Gothic Regular" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </content>
+               <padding>
+                  <Insets left="8.0" />
+               </padding>
+            </ScrollPane>
+            <ScrollPane hbarPolicy="NEVER">
+               <content>
+                  <VBox fx:id="steps" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="400.0" spacing="32.0">
+                     <children>
+                        <Label text="Steps">
+                           <VBox.margin>
+                              <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Tsukushi A Round Gothic Regular" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </content>
+               <HBox.margin>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets left="8.0" />
+               </padding>
+            </ScrollPane>
          </children></HBox>
    </children>
 </VBox>

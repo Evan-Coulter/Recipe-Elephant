@@ -1,3 +1,4 @@
+import Controllers.HomeController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,7 +14,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent parent = FXMLLoader.load(getClass().getResource("/Templates/home_page.fxml"));
         primaryStage.setTitle("Recipes");
-        primaryStage.setScene(new Scene(parent, 650, 433));
+        primaryStage.setScene(new Scene(parent, HomeController.WIDTH, HomeController.HEIGHT));
         primaryStage.show();
     }
 }
