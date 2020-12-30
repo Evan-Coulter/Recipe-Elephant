@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Roboto+Condensed:ital@1&display=swap');
+.side-section{
+    -fx-background-color: #7A93AC;
+}
+
+.side-section #header{
+    -fx-font-size: 16px;
+    -fx-font-family: 'Roboto Condensed', sans-serif;
+}
+
+.side-section #footer{
+    -fx-font-size: 12px;
+    -fx-font-family: 'Cabin', sans-serif;
+}
+
+.content-button{
+    -fx-background-color: #7A93AC;
+    -fx-font-family: 'Roboto Condensed', sans-serif;
+    -fx-background-radius: 100px;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+}
+
+.content-button:hover{
+    -fx-background-color: #8585e0;
+}
