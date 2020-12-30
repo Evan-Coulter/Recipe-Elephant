@@ -29,10 +29,7 @@ public class ViewController implements Initializable, SavableController {
         GetRecipeController getRecipeController = new GetRecipeController();
         getRecipeController.drawWindow("Choose a Recipe", 400, 100*RecipeManager.getInstance().size());
         recipe = getRecipeController.getRecipe();
-        if(recipe == null){
-            System.err.println("Error loading recipe!");
-        }
-        else{
+        if(recipe != null){
             title.setText(recipe.getName());
             fillStepsAndIngredients();
         }

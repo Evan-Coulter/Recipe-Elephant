@@ -25,8 +25,12 @@ public abstract class PopUpBox {
         layout.setSpacing(20);
 
         fillContent(layout, stage);
-
-        stage.setScene(new Scene(layout, width, height));
+        if(height == 0) {
+            stage.setScene(new Scene(layout, width, 200));
+        }
+        else{
+            stage.setScene(new Scene(layout, width, height));
+        }
         stage.showAndWait();
     }
 

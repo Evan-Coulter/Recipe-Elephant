@@ -3,6 +3,7 @@ package Controllers.UtilityControllers;
 import Model.Recipe;
 import Model.RecipeManager;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -21,6 +22,10 @@ public class GetRecipeController extends PopUpBox {
     @Override
     protected void fillContent(VBox layout, Stage stage){
         RecipeManager manager = RecipeManager.getInstance();
+        if(manager.size() == 0){
+            Label noRecipesLabel = new Label("Please create a recipe first");
+            layout.getChildren().add(noRecipesLabel);
+        }
         for(Recipe currentRecipe:manager){
             Button button = new Button(currentRecipe.getName());
             button.setOnAction(event->{
