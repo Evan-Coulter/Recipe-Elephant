@@ -96,6 +96,7 @@ public class CreatorController implements Initializable, SavableController {
         row.setSpacing(18);
         //Set up row text
         Label label = new Label(text);
+        label.setWrapText(true);
         //Get delete button
         Button button = getNewDeleteButton(parent, row, label, isStep);
         //add components

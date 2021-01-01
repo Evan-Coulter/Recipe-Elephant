@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Roboto+Condensed:ital@1&display=swap');
 #toggle-button{
     -fx-background-color: transparent;
     -fx-border-color: black;
@@ -10,4 +12,28 @@
     -fx-max-height: 12px;
     -fx-min-width: 12px;
     -fx-max-height: 12px;
+}
+
+.header-section{
+    -fx-background-color: #7A93AC;
+}
+Label{
+    -fx-font-family: 'Cabin', sans-serif;
+}
+#title{
+    -fx-font-family: 'Roboto Condensed', sans-serif;
+    -fx-text-fill: white;
+}
+.sub-header{
+    -fx-font-family: 'Roboto Condensed', sans-serif;
+}
+.content{
+    -fx-border-color: #7A93AC;
+    -fx-border-width: 3px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+.inner-content{
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
 }

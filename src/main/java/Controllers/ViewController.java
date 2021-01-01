@@ -5,6 +5,7 @@ import Model.Recipe;
 import Model.RecipeManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -46,9 +47,12 @@ public class ViewController implements Initializable, SavableController {
 
     private void addRow(VBox parent, String rowText){
         Label label = new Label(rowText);
+        label.setWrapText(true);
+        label.setPadding(new Insets(0,32,0,0));
         Button toggleButton = new CustomToggleButton(label);
         HBox row = getNewRow();
         row.getChildren().addAll(toggleButton, label);
+        row.setPadding(new Insets(0,0,0,8));
         parent.getChildren().add(row);
     }
 
