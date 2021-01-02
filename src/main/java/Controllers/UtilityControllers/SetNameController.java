@@ -5,6 +5,7 @@ import Model.Recipe;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class SetNameController extends PopUpBox {
@@ -18,8 +19,9 @@ public class SetNameController extends PopUpBox {
     protected void fillContent(VBox layout, Stage stage) {
         TextField textField = new TextField();
         textField.setPromptText("Recipe Name Here");
-
         Button saveButton = new Button("Save Name");
+        saveButton.setTextFill(Color.WHITE);
+        saveButton.setStyle("-fx-background-color: #7A93AC;");
         saveButton.setOnAction(event -> {
             name = textField.getText();
             stage.close();

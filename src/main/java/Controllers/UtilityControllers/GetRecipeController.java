@@ -5,6 +5,7 @@ import Model.RecipeManager;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 
@@ -28,6 +29,9 @@ public class GetRecipeController extends PopUpBox {
         }
         for(Recipe currentRecipe:manager){
             Button button = new Button(currentRecipe.getName());
+            button.setTextFill(Color.WHITE);
+            button.setStyle("-fx-background-color: #7A93AC;");
+            button.setWrapText(true);
             button.setOnAction(event->{
                 recipe = currentRecipe;
                 stage.close();

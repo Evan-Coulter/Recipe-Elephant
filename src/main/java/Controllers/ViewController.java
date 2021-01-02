@@ -28,7 +28,7 @@ public class ViewController implements Initializable, SavableController {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         GetRecipeController getRecipeController = new GetRecipeController();
-        getRecipeController.drawWindow("Choose a Recipe", 400, 100*RecipeManager.getInstance().size());
+        getRecipeController.drawWindow("Choose a Recipe", 200, 100*RecipeManager.getInstance().size());
         recipe = getRecipeController.getRecipe();
         if(recipe != null){
             title.setText(recipe.getName());
