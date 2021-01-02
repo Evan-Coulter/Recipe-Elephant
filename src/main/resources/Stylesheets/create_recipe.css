@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Roboto+Condensed:ital@1&display=swap');
+.header{
+    -fx-font-family: 'Cabin', sans-serif;
+    -fx-text-fill: white;
+}
+.header-content{
+    -fx-background-color: #7A93AC;
+}
+.add-content{
+    -fx-background-color: #7A93AC;
+}
+.header-label{
+    -fx-text-fill: white;
+    -fx-font-family: 'Roboto Condensed', sans-serif;
+}
+Button{
+    -fx-background-color: #7A93AC;
+    -fx-text-fill: white;
+}

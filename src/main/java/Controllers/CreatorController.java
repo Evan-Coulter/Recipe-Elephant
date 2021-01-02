@@ -6,6 +6,7 @@ import Model.Recipe;
 import Model.RecipeManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -92,8 +93,8 @@ public class CreatorController implements Initializable, SavableController {
 
     private HBox getNewTextRow(VBox parent, String text, boolean isStep){
         HBox row = new HBox();
-        row.setAlignment(Pos.CENTER);
-        row.setSpacing(18);
+        row.setAlignment(Pos.CENTER_LEFT);
+        row.setSpacing(16);
         //Set up row text
         Label label = new Label(text);
         label.setWrapText(true);
