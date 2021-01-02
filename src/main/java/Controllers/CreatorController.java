@@ -119,7 +119,7 @@ public class CreatorController implements Initializable, SavableController {
 
     public void loadPreviousRecipe() {
         GetRecipeController getter = new GetRecipeController();
-        getter.drawWindow("Choose a Recipe to edit", 200, 100*(RecipeManager.getInstance().size()));
+        getter.drawWindow("Choose a Recipe to edit", 200, 100 + 40*(RecipeManager.getInstance().size()));
         recipe = getter.getRecipe();
         if(recipe == null) return;
         for(String ingredient:recipe.getIngredients()){

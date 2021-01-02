@@ -42,7 +42,7 @@ public class HomeController implements Initializable {
 
     public void deleteButtonClicked(){
         GetRecipeController getter = new GetRecipeController();
-        getter.drawWindow("Choose a recipe to delete", 200, 100*RecipeManager.getInstance().size());
+        getter.drawWindow("Choose a recipe to delete", 200, 100 + 40*RecipeManager.getInstance().size());
         Recipe recipe = getter.getRecipe();
         if(recipe!=null){
             RecipeManager.getInstance().remove(recipe);
