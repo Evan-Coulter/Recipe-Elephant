@@ -1,5 +1,7 @@
 package Controllers;
 
+import Controllers.CustomListView.CustomCell;
+import Controllers.CustomListView.CustomListView;
 import Controllers.UtilityControllers.GetRecipeController;
 import Model.Recipe;
 import Model.RecipeManager;
@@ -21,83 +23,28 @@ import java.util.ResourceBundle;
 
 public class ViewController implements Initializable, SavableController {
     private Recipe recipe;
+    private ListView<CustomCell> ingredientListView;
+    private ListView<CustomCell> stepsListView;
     @FXML
     private Label title;
     @FXML
-    private ListView<HBox> ingredientListView;
+    private VBox ingredients;
     @FXML
-    private ListView<HBox> stepsListView;
-
-    private ObservableList<HBox> internalIngredientList;
-    private ObservableList<HBox> internalStepList;
+    private VBox steps;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         GetRecipeController getRecipeController = new GetRecipeController();
         getRecipeController.drawWindow("Choose a Recipe", 200, 100 + 40*RecipeManager.getInstance().size());
         recipe = getRecipeController.getRecipe();
-        internalIngredientList = FXCollections.observableArrayList();
-        internalStepList = FXCollections.observableArrayList();
-        ingredientListView.setItems(internalIngredientList);
-        stepsListView.setItems(internalStepList);
         if(recipe != null){
             title.setText(recipe.getName());
-            fillStepsAndIngredients();
+            ingredientListView = new CustomListView(recipe.getIngredients());
+            stepsListView = new CustomListView(recipe.getSteps());
         }
-    }
-
-    private void fillStepsAndIngredients() {
-        for(String step:recipe.getSteps()){
-            addRow(internalStepList, step);
-        }
-        for(String ingredient:recipe.getIngredients()) {
-            addRow(internalIngredientList, ingredient);
-        }
-    }
-
-    private void addRow(ObservableList<HBox> parent, String rowText){
-        Label label = new Label(rowText);
-        label.setWrapText(true);
-        label.setPadding(new Insets(0,32,0,0));
-        Button toggleButton = new CustomToggleButton(label);
-        HBox row = getNewRow();
-        row.getChildren().addAll(toggleButton, label);
-        row.setPadding(new Insets(0,0,0,8));
-        parent.add(row);
-    }
-
-    private HBox getNewRow(){
-        HBox row = new HBox();
-        row.setAlignment(Pos.CENTER_LEFT);
-        row.setSpacing(8.0);
-        return row;
+        ingredients.getChildren().add(ingredientListView);
+        steps.getChildren().add(stepsListView);
     }
 
     public void setUpClose() {}
-
-    public static class CustomToggleButton extends Button {
-        private boolean clicked;
-        private final Label associatedLabel;
-
-        public CustomToggleButton(Label associatedLabel){
-            this.setId("toggle-button");
-            this.clicked = false;
-            this.associatedLabel = associatedLabel;
-            setOnClick();
-        }
-
-        private void setOnClick() {
-            this.setOnAction(event->{
-                if(clicked){
-                    this.setStyle("-fx-background-color: white;");
-                    associatedLabel.setTextFill(Color.web("000000"));
-                    clicked = false;
-                }else{
-                    this.setStyle("-fx-background-color: #808080;");
-                    associatedLabel.setTextFill(Color.web("808080"));
-                    clicked = true;
-                }
-            });
-        }
-    }
 }
