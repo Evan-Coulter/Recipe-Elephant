@@ -1,5 +1,7 @@
 package Controllers;
 
+import Controllers.CustomListView.CustomCell;
+import Controllers.CustomListView.EditableListView;
 import Controllers.UtilityControllers.GetRecipeController;
 import Controllers.UtilityControllers.SetNameController;
 import Model.Recipe;
@@ -9,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -18,7 +21,8 @@ import java.util.ResourceBundle;
 
 public class CreatorController implements Initializable, SavableController {
     public Recipe recipe;
-    private static final Boolean STEP = true;
+    private ListView<CustomCell> ingredientListView;
+    private ListView<CustomCell> stepListView;
     @FXML
     private VBox stepVBox;
     @FXML
@@ -31,6 +35,10 @@ public class CreatorController implements Initializable, SavableController {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         recipe = new Recipe();
+        ingredientListView = new EditableListView();
+        ingredientVBox.getChildren().add(ingredientListView);
+        stepListView = new EditableListView();
+        stepVBox.getChildren().add(stepListView);
     }
 
     public void setUpClose(){
@@ -51,9 +59,6 @@ public class CreatorController implements Initializable, SavableController {
         save();
     }
 
-    /**
-     * Saves the recipe.
-     */
     private void save() {
         RecipeManager manager = RecipeManager.getInstance();
         if(!manager.contains(recipe)) {
@@ -64,57 +69,10 @@ public class CreatorController implements Initializable, SavableController {
     }
 
     public void addStep() {
-        addItem(stepVBox, stepTextArea, STEP);
+        ((EditableListView)stepListView).add(stepTextArea.getText());
     }
     public void addIngredient(){
-        addItem(ingredientVBox, ingredientTextArea, !STEP);
-    }
-
-    /**
-     * Private method that accepts a vbox, and text area and updates that vbox with
-     * whatever text was in the text area. USED TO UPDATE TWO INNER VBOXS IN CREATE RECIPE.
-     * @param vbox the input vbox.
-     * @param textArea the input textArea
-     */
-    private void addItem(VBox vbox, TextArea textArea, boolean isStep){
-        //Set up Row
-        HBox newStep = getNewTextRow(vbox, textArea.getText(), isStep);
-        //Add Row
-        vbox.getChildren().addAll(newStep);
-        //add step or ingredient to recipe
-        String text = textArea.getText();
-        if(isStep){
-            recipe.addStep(text);
-        }else{
-            recipe.addIngredient(text);
-        }
-    }
-
-    private HBox getNewTextRow(VBox parent, String text, boolean isStep){
-        HBox row = new HBox();
-        row.setAlignment(Pos.CENTER_LEFT);
-        row.setSpacing(16);
-        //Set up row text
-        Label label = new Label(text);
-        label.setWrapText(true);
-        //Get delete button
-        Button button = getNewDeleteButton(parent, row, label, isStep);
-        //add components
-        row.getChildren().addAll(button, label);
-        return row;
-    }
-
-    private Button getNewDeleteButton(VBox parent, HBox currentRow, Label rowText, boolean isStep){
-        Button deleteButton = new Button("-");
-        deleteButton.setOnAction(event->{
-            parent.getChildren().remove(currentRow);
-            if(isStep){
-                recipe.removeStep(rowText.getText());
-            }else{
-                recipe.removeIngredient(rowText.getText());
-            }
-        });
-        return deleteButton;
+        ((EditableListView)ingredientListView).add(ingredientTextArea.getText());
     }
 
     public void loadPreviousRecipe() {
@@ -123,12 +81,10 @@ public class CreatorController implements Initializable, SavableController {
         recipe = getter.getRecipe();
         if(recipe == null) return;
         for(String ingredient:recipe.getIngredients()){
-            HBox row = getNewTextRow(ingredientVBox, ingredient, false);
-            ingredientVBox.getChildren().add(row);
+            ((EditableListView)ingredientListView).add(ingredient);
         }
         for(String step:recipe.getSteps()){
-            HBox row = getNewTextRow(stepVBox, step, true);
-            stepVBox.getChildren().add(row);
+            ((EditableListView)stepListView).add(step);
         }
     }
 }

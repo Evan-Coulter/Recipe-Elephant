@@ -10,8 +10,8 @@ import java.util.ListIterator;
  * This class also updates the model recipe as changes come in.
  */
 public class EditableListView extends CustomListView {
-    protected EditableListView(List<String> internalList) {
-        super(internalList);
+    public EditableListView(){
+        super(new ArrayList<>());
     }
 
     @Override
@@ -21,6 +21,7 @@ public class EditableListView extends CustomListView {
             reorder((CustomCell)event.getGestureSource(), (CustomCell)event.getGestureTarget());
             event.consume();
         });
+        cell.setButtonFunctionality(event -> remove(cell));
         observableList.add(cell);
         updateInternalList();
     }
@@ -31,11 +32,13 @@ public class EditableListView extends CustomListView {
         while(iterator.hasNext()){
             if(iterator.next().getString().equals(target.getString())){
                 iterator.add(source);
+                updateInternalList();
+                return;
             }
         }
     }
 
-    public void remove(CustomCell cell) {
+    private void remove(CustomCell cell) {
         Iterator<CustomCell> iterator = observableList.iterator();
         while(iterator.hasNext()){
             if( iterator.next().getString().equals(cell.getString()) ){
@@ -44,7 +47,6 @@ public class EditableListView extends CustomListView {
                 return;
             }
         }
-
     }
 
     /*This is really bad (for both memory and time) but it works...*/

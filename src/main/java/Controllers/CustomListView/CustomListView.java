@@ -26,6 +26,12 @@ public class CustomListView extends ListView<CustomCell>{
         setItems(observableList);
     }
 
+    public CustomListView(){
+        super();
+        this.internalList = FXCollections.observableArrayList();
+        setItems(observableList);
+    }
+
     public void add(String item) {
         observableList.add(new ROCell(item));
     }

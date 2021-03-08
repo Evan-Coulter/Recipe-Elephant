@@ -7,16 +7,11 @@ import javafx.scene.paint.Color;
 public class ROCell extends CustomCell {
     public ROCell(String item) {
         super(item);
-        //There must be a better way to overwrite parent constructor than this.
-        getChildren().remove(0);
-        Label text = new Label(item);
-        Button button = new CustomToggleButton(text);
-        getChildren().addAll(button, text);
     }
 
     @Override
-    public String getString() {
-        return ((Label)getChildren().get(1)).getText();
+    protected Button getButtonAppearance() {
+        return new CustomToggleButton((Label)getChildren().get(0));
     }
 
     /**
