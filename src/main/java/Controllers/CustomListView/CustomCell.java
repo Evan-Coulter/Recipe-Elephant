@@ -1,7 +1,6 @@
 package Controllers.CustomListView;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,6 +15,7 @@ public abstract class CustomCell extends HBox {
         getChildren().add(new Label(item));
         Button customButton = getButtonAppearance();
         getChildren().add(0, customButton);
+        setSpacing(16);
     }
 
     protected abstract Button getButtonAppearance();

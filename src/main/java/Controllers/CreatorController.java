@@ -1,22 +1,22 @@
 package Controllers;
 
 import Controllers.CustomListView.CustomCell;
+import Controllers.CustomListView.CustomListView;
 import Controllers.CustomListView.EditableListView;
 import Controllers.UtilityControllers.GetRecipeController;
 import Controllers.UtilityControllers.SetNameController;
 import Model.Recipe;
 import Model.RecipeManager;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class CreatorController implements Initializable, SavableController {
@@ -69,22 +69,54 @@ public class CreatorController implements Initializable, SavableController {
     }
 
     public void addStep() {
-        ((EditableListView)stepListView).add(stepTextArea.getText());
+        String text = stepTextArea.getText();
+        handleAdd(text, (EditableListView) stepListView, ()->recipe.removeStep(text), ()->recipe.addStep(text));
     }
+
     public void addIngredient(){
-        ((EditableListView)ingredientListView).add(ingredientTextArea.getText());
+        String text = ingredientTextArea.getText();
+        handleAdd(text, (EditableListView) ingredientListView, ()->recipe.removeIngredient(text), ()->recipe.addIngredient(text));
+    }
+
+    public void handleAdd(String text, EditableListView source, Runnable recipeRemove, Runnable recipeAdd){
+        source.add(text, new MyEventHandler(()->source.remove(text), recipeRemove));
+        recipeAdd.run();
     }
 
     public void loadPreviousRecipe() {
         GetRecipeController getter = new GetRecipeController();
         getter.drawWindow("Choose a Recipe to edit", 200, 100 + 40*(RecipeManager.getInstance().size()));
         recipe = getter.getRecipe();
-        if(recipe == null) return;
-        for(String ingredient:recipe.getIngredients()){
-            ((EditableListView)ingredientListView).add(ingredient);
+        if(recipe != null){
+            EditableListView ingredientList = (EditableListView) ingredientListView;
+            EditableListView stepList = (EditableListView) stepListView;
+            ingredientList.setInternalList(recipe.getIngredients());
+            for(String ingredient:recipe.getIngredients()){
+                ingredientList.add(ingredient, new MyEventHandler(()->ingredientList.remove(ingredient), ()->recipe.removeStep(ingredient)));
+            }
+            stepList.setInternalList(recipe.getSteps());
+            for(String step:recipe.getSteps()){
+                stepList.add(step, new MyEventHandler(()->stepList.remove(step), ()->recipe.removeStep(step)));
+            }
         }
-        for(String step:recipe.getSteps()){
-            ((EditableListView)stepListView).add(step);
-        }
+    }
+}
+
+/**
+ * Packages up all the runnable parameters.
+ */
+class MyEventHandler implements EventHandler<ActionEvent>{
+    private final Runnable removeFromListViewMethod;
+    private final Runnable removeFromRecipeMethod;
+
+    public MyEventHandler(Runnable removeFromListViewMethod, Runnable removeFromRecipeMethod){
+        this.removeFromListViewMethod = removeFromListViewMethod;
+        this.removeFromRecipeMethod = removeFromRecipeMethod;
+    }
+
+    @Override
+    public void handle(ActionEvent event) {
+        removeFromListViewMethod.run();
+        removeFromRecipeMethod.run();
     }
 }

@@ -5,7 +5,8 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 
-public class DragAndDropableCell extends CustomCell { public DragAndDropableCell(String item) {
+public class DragAndDropableCell extends CustomCell {
+    public DragAndDropableCell(String item) {
         super(item);
         setUpDragAndDrop();
     }

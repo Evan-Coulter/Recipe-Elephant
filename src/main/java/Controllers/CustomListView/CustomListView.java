@@ -1,9 +1,7 @@
 package Controllers.CustomListView;
 
-import Model.Recipe;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
 import java.util.List;
@@ -26,10 +24,8 @@ public class CustomListView extends ListView<CustomCell>{
         setItems(observableList);
     }
 
-    public CustomListView(){
-        super();
-        this.internalList = FXCollections.observableArrayList();
-        setItems(observableList);
+    public void setInternalList(List<String> newInternalList){
+        this.internalList = newInternalList;
     }
 
     public void add(String item) {
