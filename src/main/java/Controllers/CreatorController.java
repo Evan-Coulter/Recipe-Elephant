@@ -1,7 +1,6 @@
 package Controllers;
 
 import Controllers.CustomListView.CustomCell;
-import Controllers.CustomListView.CustomListView;
 import Controllers.CustomListView.EditableListView;
 import Controllers.UtilityControllers.GetRecipeController;
 import Controllers.UtilityControllers.SetNameController;

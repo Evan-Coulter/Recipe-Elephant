@@ -6,13 +6,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-
 
 /**
  * Similarly dumb class that creates and displays a small alert box
@@ -20,7 +16,6 @@ import javafx.util.Callback;
  */
 public class GetRecipeController extends PopUpBox {
     private Recipe recipe = null;
-    private Stage stage = null;
 
     public Recipe getRecipe(){
         return recipe;
@@ -28,7 +23,6 @@ public class GetRecipeController extends PopUpBox {
 
     @Override
     protected void fillContent(VBox layout, Stage stage){
-        this.stage = stage;
         RecipeManager manager = RecipeManager.getInstance();
         if(manager.size() == 0){
             setMessage(layout, "Please create a recipe first");
@@ -54,5 +48,4 @@ public class GetRecipeController extends PopUpBox {
     private void setMessage(VBox layout, String message) {
         layout.getChildren().add(new Label(message));
     }
-
 }

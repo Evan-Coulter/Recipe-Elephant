@@ -11,7 +11,6 @@ import javafx.stage.Stage;
  */
 public abstract class PopUpBox {
     protected String title;
-    private static final Double WIDTH = 200.0;
 
     public void drawWindow(String title, int width, int height){
         this.title = title;
