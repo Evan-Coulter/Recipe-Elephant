@@ -16,6 +16,7 @@ public abstract class PopUpBox {
         this.title = title;
 
         Stage stage = new Stage();
+        stage.setResizable(false);
         stage.setTitle(title);
 
         VBox layout = new VBox();
