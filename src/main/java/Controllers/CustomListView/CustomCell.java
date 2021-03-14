@@ -2,6 +2,7 @@ package Controllers.CustomListView;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -12,9 +13,16 @@ import javafx.scene.layout.HBox;
  */
 public abstract class CustomCell extends HBox {
     public CustomCell(String item) {
-        getChildren().add(new Label(item));
+        setCustomStyle();
+        Label text = new Label(item);
+        text.setWrapText(true);
+        getChildren().add(text);
         Button customButton = getButtonAppearance();
         getChildren().add(0, customButton);
+    }
+
+    private void setCustomStyle(){
+        setAlignment(Pos.CENTER_LEFT);
         setSpacing(16);
     }
 

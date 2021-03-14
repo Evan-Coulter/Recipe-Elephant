@@ -53,7 +53,6 @@ public class HomeController implements Initializable {
     /**
      * This is just a pure static window so no need to mess around
      * with controllers.
-     * @throws Exception
      */
     public void helpButtonClicked() throws Exception{
         Stage stage = new Stage();

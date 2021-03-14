@@ -2,6 +2,7 @@ package Controllers;
 
 import Controllers.CustomListView.CustomCell;
 import Controllers.CustomListView.CustomListView;
+import Controllers.Dimensions.DimensionKeeper;
 import Controllers.UtilityControllers.GetRecipeController;
 import Model.Recipe;
 import Model.RecipeManager;
@@ -15,8 +16,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ViewController implements Initializable, SavableController {
-    private ListView<CustomCell> ingredientListView;
-    private ListView<CustomCell> stepsListView;
     @FXML
     private Label title;
     @FXML
@@ -31,11 +30,11 @@ public class ViewController implements Initializable, SavableController {
         Recipe recipe = getRecipeController.getRecipe();
         if(recipe != null){
             title.setText(recipe.getName());
-            ingredientListView = new CustomListView(recipe.getIngredients());
-            stepsListView = new CustomListView(recipe.getSteps());
+            ListView<CustomCell> ingredientListView = new CustomListView(recipe.getIngredients(), DimensionKeeper.INGREDIENT_LIST_MAX_WIDTH);
+            ListView<CustomCell> stepsListView = new CustomListView(recipe.getSteps(), DimensionKeeper.STEP_LIST_MAX_WIDTH);
+            ingredients.getChildren().add(ingredientListView);
+            steps.getChildren().add(stepsListView);
         }
-        ingredients.getChildren().add(ingredientListView);
-        steps.getChildren().add(stepsListView);
     }
 
     public void setUpClose() {}

@@ -1,7 +1,9 @@
 package Controllers;
 
 import Controllers.CustomListView.CustomCell;
+import Controllers.CustomListView.CustomListView;
 import Controllers.CustomListView.EditableListView;
+import Controllers.Dimensions.DimensionKeeper;
 import Controllers.UtilityControllers.GetRecipeController;
 import Controllers.UtilityControllers.SetNameController;
 import Model.Recipe;
@@ -15,7 +17,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class CreatorController implements Initializable, SavableController {
@@ -34,9 +35,9 @@ public class CreatorController implements Initializable, SavableController {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         recipe = new Recipe();
-        ingredientListView = new EditableListView();
+        ingredientListView = new EditableListView(DimensionKeeper.INGREDIENT_LIST_MAX_WIDTH);
         ingredientVBox.getChildren().add(ingredientListView);
-        stepListView = new EditableListView();
+        stepListView = new EditableListView(DimensionKeeper.STEP_LIST_MAX_WIDTH);
         stepVBox.getChildren().add(stepListView);
     }
 

@@ -10,8 +10,8 @@ import java.util.ListIterator;
  * Extension of CustomListView that can have items added, removed, and reordered.
  */
 public class EditableListView extends CustomListView {
-    public EditableListView(){
-        super(new ArrayList<>());
+    public EditableListView(Double width){
+        super(new ArrayList<>(), width);
     }
 
     public void add(String item, EventHandler<ActionEvent> onDeleteButtonClicked) {
@@ -21,6 +21,7 @@ public class EditableListView extends CustomListView {
             event.consume();
         });
         cell.setButtonFunctionality(onDeleteButtonClicked);
+        cell.setMaxWidth(width);
         observableList.add(cell);
     }
 
