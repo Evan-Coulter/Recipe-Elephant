@@ -6,38 +6,34 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../Stylesheets/home_page.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HomeController">
    <center>
-      <VBox alignment="CENTER" prefHeight="303.0" prefWidth="350.0" spacing="24.0">
+      <VBox alignment="CENTER" prefHeight="303.0" prefWidth="350.0" spacing="32.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#viewButtonClicked" prefHeight="48.0" prefWidth="200.0" styleClass="content-button" text="View Recipe">
+            <Button mnemonicParsing="false" onAction="#viewButtonClicked" prefHeight="48.0" prefWidth="264.0" styleClass="content-button" text="View Recipe">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Poppins Bold" size="18.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Button>
-            <Button mnemonicParsing="false" onAction="#createButtonClicked" prefHeight="48.0" prefWidth="200.0" styleClass="content-button" text="Create Recipe">
+            <Button mnemonicParsing="false" onAction="#createButtonClicked" prefHeight="48.0" prefWidth="264.0" styleClass="content-button" text="Create Recipe">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#editButtonClicked" prefHeight="48.0" prefWidth="200.0" styleClass="content-button" text="Edit Recipe">
+            <Button mnemonicParsing="false" onAction="#editButtonClicked" prefHeight="48.0" prefWidth="264.0" styleClass="content-button" text="Edit Recipe">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="48.0" prefWidth="200.0" styleClass="content-button" text="Delete Recipe">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#helpButtonClicked" prefHeight="48.0" prefWidth="200.0" styleClass="content-button" text="Help">
+            <Button mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="48.0" prefWidth="264.0" styleClass="content-button" text="Delete Recipe">
                <font>
                   <Font size="18.0" />
                </font>
@@ -46,29 +42,28 @@
       </VBox>
    </center>
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="184.0" spacing="24.0" styleClass="side-section">
+      <AnchorPane prefWidth="200.0" styleClass="side-section">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
          <children>
-            <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="NEVER">
+            <ImageView fitHeight="125.0" fitWidth="125.0" layoutX="38.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/elephant.png" />
                </image>
             </ImageView>
-            <Label fx:id="header" text="The elephant who never forgets your recipes!" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <Label fx:id="header" layoutX="10.0" layoutY="184.0" text="Recipe Elephant" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
-                  <Font size="16.0" />
+                  <Font size="24.0" />
                </font>
-               <VBox.margin>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </VBox.margin>
             </Label>
-            <Label fx:id="footer" text="Write down your recipes with the &quot;Create A Recipe&quot; button and then get cooking with the &quot;View A Recipe&quot; Button." textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+            <Label fx:id="sub" layoutX="36.0" layoutY="226.0" prefHeight="43.0" prefWidth="129.0" text="KEEP TRACK OF ALL YOUR RECIPES" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+            <Button layoutX="51.0" layoutY="297.0" mnemonicParsing="false" onAction="#helpButtonClicked" prefHeight="48.0" prefWidth="99.0" styleClass="help-button" text="Get Help" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
          </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-         <padding>
-            <Insets bottom="16.0" left="16.0" right="16.0" top="48.0" />
-         </padding>
-      </VBox>
+      </AnchorPane>
    </left>
 </BorderPane>

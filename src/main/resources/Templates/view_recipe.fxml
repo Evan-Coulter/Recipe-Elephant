@@ -18,7 +18,7 @@
          <children>
             <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                <children>
-                  <Label fx:id="title" text="Recipe Title" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                  <Label fx:id="title" text="Recipe Title" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
