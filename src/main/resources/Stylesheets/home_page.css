@@ -1,27 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital@1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cabin&family=Roboto+Condensed:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
 .side-section{
     -fx-background-color: #7A93AC;
 }
 
 .side-section #header{
-    -fx-font-size: 16px;
-    -fx-font-family: 'Roboto Condensed', sans-serif;
+    -fx-font-size: 22px;
+    -fx-font-family: 'Poppins', sans-serif;
+}
+.side-section #sub{
+    -fx-font-size: 12px;
+    -fx-font-family: 'Poppins', sans-serif;
 }
 
 .side-section #footer{
     -fx-font-size: 12px;
-    -fx-font-family: 'Cabin', sans-serif;
+    -fx-font-family: 'Poppins', sans-serif;
 }
 
 .content-button{
     -fx-background-color: #7A93AC;
-    -fx-font-family: 'Roboto Condensed', sans-serif;
-    -fx-background-radius: 100px;
+    -fx-font-family: 'Poppins', sans-serif;
+    -fx-background-radius: 12px;
     -fx-text-fill: white;
     -fx-font-size: 16px;
 }
 
 .content-button:hover{
     -fx-background-color: #8585e0;
+}
+
+.help-button{
+    -fx-background-color: #CBD4DE;
+    -fx-text-fill: #7A93AC;
+    -fx-font-family: 'Poppins', sans-serif;
+    -fx-background-radius: 12px;
+    -fx-font-size: 12px;
+}
+
+.help-button:hover{
+    -fx-background-color: #8585e0;
+    -fx-text-fill: white;
 }
