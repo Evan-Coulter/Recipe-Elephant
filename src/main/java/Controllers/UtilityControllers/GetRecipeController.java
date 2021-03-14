@@ -2,12 +2,13 @@ package Controllers.UtilityControllers;
 
 import Model.Recipe;
 import Model.RecipeManager;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
 
 /**
  * Similarly dumb class that creates and displays a small alert box
@@ -24,20 +25,27 @@ public class GetRecipeController extends PopUpBox {
     protected void fillContent(VBox layout, Stage stage){
         RecipeManager manager = RecipeManager.getInstance();
         if(manager.size() == 0){
-            Label noRecipesLabel = new Label("Please create a recipe first");
-            layout.getChildren().add(noRecipesLabel);
+            setMessage(layout, "Please create a recipe first");
         }
+        else{
+            setMessage(layout, "Choose a Recipe From Below");
+        }
+        //Fill ObservableList to add items to ListView
+        ObservableList<Button> observableList = FXCollections.observableArrayList();
         for(Recipe currentRecipe:manager){
-            Button button = new Button(currentRecipe.getName());
-            button.setTextFill(Color.WHITE);
-            button.setStyle("-fx-background-color: #7A93AC;");
-            button.setWrapText(true);
-            button.setOnAction(event->{
+            Button row = new Button(currentRecipe.getName());
+            row.setOnAction(event -> {
                 recipe = currentRecipe;
                 stage.close();
             });
-            layout.getChildren().add(button);
+            observableList.add(row);
         }
+        ListView<Button> listView = new ListView<>();
+        listView.setItems(observableList);
+        layout.getChildren().add(listView);
     }
 
+    private void setMessage(VBox layout, String message) {
+        layout.getChildren().add(new Label(message));
+    }
 }

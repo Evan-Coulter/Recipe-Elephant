@@ -50,8 +50,13 @@ public class HomeController implements Initializable {
         }
     }
 
+    /**
+     * This is just a pure static window so no need to mess around
+     * with controllers.
+     */
     public void helpButtonClicked() throws Exception{
         Stage stage = new Stage();
+        stage.setResizable(false);
         Parent parent = FXMLLoader.load(getClass().getResource("/Templates/help.fxml"));
         stage.setTitle("Help");
         stage.setScene(new Scene(parent, 650, 433));
@@ -71,6 +76,7 @@ public class HomeController implements Initializable {
 
             //Set Up Stage
             Stage window = new Stage();
+            window.setResizable(false);
             window.setTitle(title);
             window.setScene(new Scene(root, WIDTH, HEIGHT));
             window.setOnCloseRequest(event->{

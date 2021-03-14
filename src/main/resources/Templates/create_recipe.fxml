@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../Stylesheets/create_recipe.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CreatorController">
+<BorderPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../Stylesheets/create_recipe.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CreatorController">
    <top>
       <MenuBar styleClass="header" BorderPane.alignment="CENTER">
         <menus>
@@ -26,19 +26,20 @@
       </MenuBar>
    </top>
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="272.0" prefWidth="219.0" spacing="20.0" styleClass="header-content" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" maxWidth="220.0" minWidth="220.0" prefHeight="272.0" prefWidth="220.0" spacing="20.0" styleClass="header-content" BorderPane.alignment="CENTER">
          <children>
             <Label styleClass="header-label" text="Ingredients">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <ScrollPane fitToHeight="true" fitToWidth="true" minWidth="-Infinity" prefHeight="348.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxWidth="220.0" minWidth="220.0" prefHeight="348.0" prefWidth="220.0" VBox.vgrow="ALWAYS">
                <content>
-                  <VBox fx:id="ingredientVBox" prefWidth="200.0" spacing="15.0" styleClass="inner-content">
+                  <VBox fx:id="ingredientVBox" maxWidth="220.0" minWidth="220.0" prefWidth="220.0" spacing="15.0" styleClass="inner-content">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding></VBox>
+                     </padding>
+                  </VBox>
                </content>
             </ScrollPane>
          </children>
@@ -48,16 +49,16 @@
       </VBox>
    </left>
    <center>
-      <VBox alignment="TOP_CENTER" spacing="20.0" styleClass="header-content" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" maxWidth="380.0" minWidth="380.0" prefWidth="380.0" spacing="20.0" styleClass="header-content" BorderPane.alignment="CENTER">
          <children>
             <Label styleClass="header-label" text="Steps">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
+            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxWidth="380.0" minWidth="380.0" prefWidth="380.0" VBox.vgrow="ALWAYS">
                <content>
-                  <VBox fx:id="stepVBox" spacing="20.0" styleClass="inner-content">
+                  <VBox fx:id="stepVBox" maxWidth="380.0" minWidth="380.0" prefWidth="380.0" spacing="20.0" styleClass="inner-content">
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>

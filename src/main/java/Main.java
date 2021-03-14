@@ -1,3 +1,4 @@
+import Controllers.Dimensions.DimensionKeeper;
 import Controllers.HomeController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,8 +14,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent parent = FXMLLoader.load(getClass().getResource("/Templates/home_page.fxml"));
+        primaryStage.setResizable(false);
         primaryStage.setTitle("Recipe Elephant");
-        primaryStage.setScene(new Scene(parent, HomeController.WIDTH, HomeController.HEIGHT));
+        primaryStage.setScene(new Scene(parent, DimensionKeeper.WINDOW_WIDTH, DimensionKeeper.WIDOW_HEIGHT));
         primaryStage.show();
     }
 }

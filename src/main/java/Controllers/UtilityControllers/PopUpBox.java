@@ -7,8 +7,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
- * Abstract factory class for getting information
- * from a popup window.
+ * Strategy class for getting information from a popup window.
  */
 public abstract class PopUpBox {
     protected String title;
@@ -17,6 +16,7 @@ public abstract class PopUpBox {
         this.title = title;
 
         Stage stage = new Stage();
+        stage.setResizable(false);
         stage.setTitle(title);
 
         VBox layout = new VBox();
