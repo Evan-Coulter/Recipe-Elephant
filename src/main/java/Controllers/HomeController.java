@@ -1,6 +1,7 @@
 package Controllers;
 
 import Controllers.UtilityControllers.GetRecipeController;
+import Controllers.UtilityControllers.NoRecipesController;
 import Model.Recipe;
 import Model.RecipeManager;
 import javafx.fxml.FXMLLoader;
@@ -20,9 +21,15 @@ public class HomeController implements Initializable {
     public static final int HEIGHT = 400;
 
     public void viewButtonClicked() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Templates/view_recipe.fxml"));
-        String name = "View Recipe";
-        setUpAndStartController(fxmlLoader, name);
+        if(RecipeManager.getInstance().size() == 0){
+            NoRecipesController controller = new NoRecipesController();
+            controller.drawWindow("", 200, 120);
+        }
+        else {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Templates/view_recipe.fxml"));
+            String name = "View Recipe";
+            setUpAndStartController(fxmlLoader, name);
+        }
     }
 
     public void createButtonClicked(){
@@ -32,11 +39,17 @@ public class HomeController implements Initializable {
     }
 
     public void editButtonClicked(){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Templates/create_recipe.fxml"));
-        String name = "Edit Recipe";
-        SavableController controller = setUpAndStartController(fxmlLoader, name);
-        if(controller!=null){
-            ((CreatorController)controller).loadPreviousRecipe();
+        if(RecipeManager.getInstance().size() == 0){
+            NoRecipesController controller = new NoRecipesController();
+            controller.drawWindow("", 200, 120);
+        }
+        else {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Templates/create_recipe.fxml"));
+            String name = "Edit Recipe";
+            SavableController controller = setUpAndStartController(fxmlLoader, name);
+            if (controller != null) {
+                ((CreatorController) controller).loadPreviousRecipe();
+            }
         }
     }
 
